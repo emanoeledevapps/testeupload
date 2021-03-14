@@ -12,7 +12,7 @@ const app = express();
  * Database setup
  */
 mongoose.connect(
-  process.env.MONGO_URL,
+  process.env.MONGODB_URL,
   {
     useNewUrlParser: true
   }
