@@ -21,7 +21,7 @@ const storageTypes = {
   }),
   s3: multerS3({
     s3: new aws.S3(),
-    bucket: process.env.BUCKET_NAME,
+    bucket: 'uploadsclipesmusicais',
     contentType: multerS3.AUTO_CONTENT_TYPE,
     acl: "public-read",
     key: (req, file, cb) => {
@@ -47,7 +47,8 @@ module.exports = {
       "image/jpeg",
       "image/pjpeg",
       "image/png",
-      "image/gif"
+      "image/gif",
+      "video/mp4"
     ];
 
     if (allowedMimes.includes(file.mimetype)) {
