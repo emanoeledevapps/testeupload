@@ -11,6 +11,9 @@ const PostSchema = new mongoose.Schema({
   size: Number,
   key: String,
   url: String,
+  professor: String,
+  aluno: String,
+  semana: String,
   createdAt: {
     type: Date,
     default: Date.now

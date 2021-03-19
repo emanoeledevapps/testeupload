@@ -21,14 +21,15 @@ const storageTypes = {
   }),
   s3: multerS3({
     s3: new aws.S3(),
-    bucket: 'uploadsclipesmusicais',
+    bucket: 'escadvhoracioramalho',
     contentType: multerS3.AUTO_CONTENT_TYPE,
     acl: "public-read",
     key: (req, file, cb) => {
+      const {professor, aluno, semana} = req.params;
       crypto.randomBytes(16, (err, hash) => {
         if (err) cb(err);
 
-        const fileName = `${hash.toString("hex")}-${file.originalname}`;
+        const fileName = `Atividades/${professor}/${aluno}/${semana}/${hash.toString("hex")}-${file.originalname}`;
 
         cb(null, fileName);
       });
@@ -39,9 +40,6 @@ const storageTypes = {
 module.exports = {
   dest: path.resolve(__dirname, "..", "..", "tmp", "uploads"),
   storage: storageTypes[process.env.STORAGE_TYPE],
-  limits: {
-    fileSize: 2 * 1024 * 1024
-  },
   fileFilter: (req, file, cb) => {
     const allowedMimes = [
       "image/jpeg",
